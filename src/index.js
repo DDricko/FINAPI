@@ -84,7 +84,7 @@ app.post("/deposit", verifyIfExistsAccountCPF, (req, res) => {
         description,
         amount,
         created_at: new Date(),
-        type: "debit"
+        type: "credit"
     }
 
     customer.statement.push(statementOperation);
@@ -92,12 +92,8 @@ app.post("/deposit", verifyIfExistsAccountCPF, (req, res) => {
 });
 
 app.post("/withdraw", verifyIfExistsAccountCPF, (req, res) => {
-    const {
-        amount
-    } = req.body;
-    const {
-        customer
-    } = req;
+    const { amount } = req.body;
+    const { customer } = req;
 
     const balance = getBalance(customer.statement);
 
